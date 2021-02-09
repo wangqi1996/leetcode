@@ -10,7 +10,14 @@ class ListNode(object):
             s += (str(r.val) + ' -> ')
             r = r.next
         print(s)
-
+def create(l):
+    head = ListNode(l[0], None)
+    result = head
+    for ll in l[1:]:
+        head.next = ListNode(ll, None)
+        head = head.next
+    result.print(result)
+    return result
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
@@ -48,14 +55,7 @@ class Solution(object):
         return result
 
 
-def create(l):
-    head = ListNode(l[0], None)
-    result = head
-    for ll in l[1:]:
-        head.next = ListNode(ll, None)
-        head = head.next
-    result.print(result)
-    return result
+
 
 
 if __name__ == '__main__':
