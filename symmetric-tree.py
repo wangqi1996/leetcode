@@ -6,29 +6,39 @@ class TreeNode(object):
         self.right = right
 
 
-def build_tree(l):
-    
-
 class Solution(object):
     def isSymmetric(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
-        layer = [root]
-        while len(layer) > 0:
-            temp = []
-            for n in layer:
-                if n:
-                    temp.extend([n.left, n.right])
-            _len = len(temp)
-            for i in range(_len // 2):
-                if temp[i] != temp[_len - 1 - i]:
-                    return False
 
-            layer = temp
+        # if not root:
+        #     return True
+        # layer = [root]
+        # while len(layer) > 0:
+        #     _len = len(layer)
+        #     for i in range(_len // 2):
+        #         if not layer[i] and not layer[_len - i - 1]:
+        #             continue
+        #         if not layer[i] or not layer[_len - i - 1] or layer[i].val != layer[_len - i - 1].val:
+        #             return False
+        #     new_list = []
+        #     for node in layer:
+        #         if node:
+        #             new_list.extend([node.left, node.right])
+        #     layer = new_list
+        #
+        # return True
 
-        return True
+        def check(node1, node2):
+            if not node1 and not node2:
+                return True
+            if not node1 or not node2:
+                return False
+            return node1.val == node2.val and check(node1.left, node2.right) and check(node2.left, node1.right)
+
+        return check(root, root)
 
 
 if __name__ == '__main__':
